@@ -174,7 +174,7 @@ export default function Index() {
         {/* Emotions Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {emotions.map((emotion) => (
-            <Card key={emotion.id} className="group hover:shadow-md transition-all duration-200 border-2 border-gray-600 bg-amber-50">
+            <Card key={emotion.id} className="group hover:shadow-md transition-all duration-200 border-2 border-gray-600 bg-amber-100">
               <CardHeader className="text-center pb-4">
                 <div className={`w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${emotion.gradient} flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform`}>
                   {emotion.emoji}
