@@ -190,7 +190,7 @@ export default function Index() {
                     <span className="text-sm font-medium">Доступно:</span>
                     <span className="text-sm font-semibold">{20 - getEmotionQuantity(emotion.id)}/20</span>
                   </div>
-                  <div className="flex border-2 border-yellow-400 rounded overflow-hidden h-4 bg-yellow-100">
+                  <div className="flex border-2 border-black rounded overflow-hidden h-4 bg-yellow-100">
                     {Array.from({ length: 20 }, (_, index) => {
                       const isAvailable = index < (20 - getEmotionQuantity(emotion.id));
                       
