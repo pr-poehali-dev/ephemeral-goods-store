@@ -137,10 +137,10 @@ export default function Index() {
             <div className="flex items-center gap-3">
               <div className="text-3xl">⭐</div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-[#000000]">
                   Магазин Эмоций
                 </h1>
-                <p className="text-sm text-muted-foreground">Эфемерные товары для души</p>
+                <p className="text-[#000000] text-sm font-medium">Эфемерные товары для души</p>
               </div>
             </div>
             
