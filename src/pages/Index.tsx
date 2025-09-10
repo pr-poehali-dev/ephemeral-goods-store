@@ -141,10 +141,10 @@ export default function Index() {
                 </svg>
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-[#000000]">
+                <h1 className="font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-[#000000] text-4xl">
                   Магазин Эмоций
                 </h1>
-                <p className="text-[#000000] text-sm font-medium">Эфемерные товары для души</p>
+                <p className="text-[#000000] font-medium text-lg">Эфемерные товары для души</p>
               </div>
             </div>
             
