@@ -165,7 +165,7 @@ export default function Index() {
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12 bg-slate-400">
+      <div className="container mx-auto px-6 py-12 bg-slate-300">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-[#000000]">
             Каталог Чувств и Эмоций
