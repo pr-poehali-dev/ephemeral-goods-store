@@ -129,26 +129,24 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-border">
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-primary/10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary rounded flex items-center justify-center">
-                <span className="text-white text-lg font-bold">Э</span>
-              </div>
+              <div className="text-3xl">🌸</div>
               <div>
-                <h1 className="text-2xl font-bold text-primary">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                   Магазин Эмоций
                 </h1>
-                <p className="text-sm text-muted-foreground">Профессиональная психологическая поддержка</p>
+                <p className="text-sm text-muted-foreground">Эфемерные товары для души</p>
               </div>
             </div>
             
             <Button
               variant="outline"
-              className="relative"
+              className="relative hover:scale-105 transition-transform"
               onClick={() => setIsCartOpen(!isCartOpen)}
             >
               <Icon name="ShoppingCart" size={20} />
@@ -165,24 +163,24 @@ export default function Index() {
 
       <div className="container mx-auto px-6 py-12">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 text-primary">
-            Каталог Эмоциональных Состояний
+          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Каталог Чувств и Эмоций
           </h2>
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-            Профессиональная коррекция эмоционального состояния. Стоимость одной единицы — 1000₽, максимальное количество — 20 единиц.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Выберите нужные эмоции и добавьте их в свою жизнь. Каждое деление стоит 1000₽, максимум 20 делений на эмоцию.
           </p>
         </div>
 
         {/* Emotions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {emotions.map((emotion) => (
-            <Card key={emotion.id} className="group hover:shadow-md transition-all duration-200 border border-border">
+            <Card key={emotion.id} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
               <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 mx-auto rounded bg-muted flex items-center justify-center text-2xl mb-4">
+                <div className={`w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${emotion.gradient} flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform`}>
                   {emotion.emoji}
                 </div>
-                <CardTitle className="text-lg font-medium">{emotion.name}</CardTitle>
-                <CardDescription className="text-xs text-muted-foreground">{emotion.description}</CardDescription>
+                <CardTitle className="text-xl font-semibold">{emotion.name}</CardTitle>
+                <CardDescription className="text-sm">{emotion.description}</CardDescription>
               </CardHeader>
               
               <CardContent className="space-y-4">
@@ -192,11 +190,24 @@ export default function Index() {
                     <span className="text-sm font-medium">Доступно:</span>
                     <span className="text-sm font-semibold">{20 - getEmotionQuantity(emotion.id)}/20</span>
                   </div>
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div 
-                      className="bg-primary h-2 rounded-full transition-all duration-300"
-                      style={{ width: `${((20 - getEmotionQuantity(emotion.id)) / 20) * 100}%` }}
-                    />
+                  <div className="grid grid-cols-10 gap-1 h-3">
+                    {Array.from({ length: 20 }, (_, index) => {
+                      const isAvailable = index < (20 - getEmotionQuantity(emotion.id));
+                      const isPurchased = index >= (20 - getEmotionQuantity(emotion.id));
+                      
+                      return (
+                        <div
+                          key={index}
+                          className={`h-full rounded-sm transition-all duration-200 ${
+                            isPurchased
+                              ? 'bg-gray-300 opacity-50' // Купленные - серые
+                              : isAvailable
+                              ? `bg-gradient-to-br ${emotion.gradient} opacity-80 shadow-sm` // Доступные - цветные
+                              : 'bg-gray-200' // Пустые
+                          }`}
+                        />
+                      );
+                    })}
                   </div>
                 </div>
 
