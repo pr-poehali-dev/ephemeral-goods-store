@@ -199,7 +199,7 @@ export default function Index() {
                           key={index}
                           className={`flex-1 transition-all duration-200 border-r border-border last:border-r-0 ${
                             isAvailable
-                              ? emotion.color.replace('bg-', 'bg-').replace('-200', '-500')
+                              ? emotion.color.replace('bg-', 'bg-').replace('-200', '-600')
                               : 'bg-gray-200'
                           }`}
                         />
