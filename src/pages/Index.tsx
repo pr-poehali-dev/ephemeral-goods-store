@@ -190,23 +190,21 @@ export default function Index() {
                     <span className="text-sm font-medium">Доступно:</span>
                     <span className="text-sm font-semibold">{20 - getEmotionQuantity(emotion.id)}/20</span>
                   </div>
-                  <div className="grid grid-cols-10 gap-1">
+                  <div className="grid grid-cols-10 gap-1 h-3">
                     {Array.from({ length: 20 }, (_, index) => {
                       const isAvailable = index < (20 - getEmotionQuantity(emotion.id));
+                      const isPurchased = index >= (20 - getEmotionQuantity(emotion.id));
                       
                       return (
                         <div
                           key={index}
-                          className={`h-4 w-full rounded-full transition-all duration-200 shadow-sm ${
-                            isAvailable
-                              ? 'bg-primary' 
-                              : 'bg-muted'
+                          className={`h-full rounded-sm transition-all duration-200 ${
+                            isPurchased
+                              ? 'bg-gray-300 opacity-50' // Купленные - серые
+                              : isAvailable
+                              ? `bg-gradient-to-br ${emotion.gradient} opacity-80 shadow-sm` // Доступные - цветные
+                              : 'bg-gray-200' // Пустые
                           }`}
-                          style={{
-                            background: isAvailable 
-                              ? 'linear-gradient(145deg, #3a4045, #2a2d32)' 
-                              : undefined
-                          }}
                         />
                       );
                     })}
