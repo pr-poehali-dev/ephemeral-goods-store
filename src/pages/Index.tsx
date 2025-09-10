@@ -8,7 +8,7 @@ import Icon from '@/components/ui/icon';
 interface Emotion {
   id: string;
   name: string;
-  icon: string;
+  emoji: string;
   description: string;
   color: string;
   gradient: string;
@@ -21,10 +21,10 @@ interface CartItem {
 
 const emotions: Emotion[] = [
   // Положительные эмоции
-  { id: 'love', name: 'Любовь', icon: 'Heart', description: 'Глубокое чувство привязанности', color: 'bg-red-200', gradient: 'from-red-200 to-pink-200' },
-  { id: 'joy', name: 'Радость', icon: 'Smile', description: 'Яркое положительное чувство', color: 'bg-yellow-200', gradient: 'from-yellow-200 to-orange-200' },
-  { id: 'happiness', name: 'Счастье', icon: 'Sun', description: 'Состояние полного удовлетворения', color: 'bg-green-200', gradient: 'from-green-200 to-lime-200' },
-  { id: 'admiration', name: 'Восхищение', icon: 'Star', description: 'Чувство глубокого уважения', color: 'bg-purple-200', gradient: 'from-purple-200 to-violet-200' },
+  { id: 'love', name: 'Любовь', emoji: '❤️', description: 'Глубокое чувство привязанности', color: 'bg-red-200', gradient: 'from-red-200 to-pink-200' },
+  { id: 'joy', name: 'Радость', emoji: '😄', description: 'Яркое положительное чувство', color: 'bg-yellow-200', gradient: 'from-yellow-200 to-orange-200' },
+  { id: 'happiness', name: 'Счастье', emoji: '😊', description: 'Состояние полного удовлетворения', color: 'bg-green-200', gradient: 'from-green-200 to-lime-200' },
+  { id: 'admiration', name: 'Восхищение', emoji: '🤩', description: 'Чувство глубокого уважения', color: 'bg-purple-200', gradient: 'from-purple-200 to-violet-200' },
   { id: 'pleasure', name: 'Удовольствие', emoji: '😌', description: 'Приятное ощущение', color: 'bg-pink-200', gradient: 'from-pink-200 to-rose-200' },
   { id: 'peace', name: 'Умиротворённость', emoji: '🕊️', description: 'Глубокое внутреннее спокойствие', color: 'bg-blue-200', gradient: 'from-blue-200 to-sky-200' },
   { id: 'pride', name: 'Гордость', emoji: '😤', description: 'Чувство собственного достоинства', color: 'bg-indigo-200', gradient: 'from-indigo-200 to-blue-200' },
@@ -141,10 +141,10 @@ export default function Index() {
                 </svg>
               </div>
               <div>
-                <h1 className="font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-[#000000] text-4xl">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-[#000000]">
                   Магазин Эмоций
                 </h1>
-                <p className="text-[#000000] font-medium text-lg">Эфемерные товары для души</p>
+                <p className="text-[#000000] text-sm font-medium">Эфемерные товары для души</p>
               </div>
             </div>
             
@@ -181,7 +181,7 @@ export default function Index() {
             <Card key={emotion.id} className="group hover:shadow-md transition-all duration-200 border-2 border-gray-600 bg-gray-200">
               <CardHeader className="text-center pb-4">
                 <div className={`w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${emotion.gradient} flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform border-2 border-black`}>
-                  <Icon name={emotion.icon} size={32} className="text-white" />
+                  {emotion.emoji}
                 </div>
                 <CardTitle className="text-xl font-semibold">{emotion.name}</CardTitle>
                 <CardDescription className="text-sm">{emotion.description}</CardDescription>
