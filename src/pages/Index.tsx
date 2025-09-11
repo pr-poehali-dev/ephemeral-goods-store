@@ -370,16 +370,18 @@ export default function Index() {
       </div>
 
       {/* Admin Button */}
-      <div className="fixed bottom-4 right-4 z-30">
-        <Button
-          onClick={() => setIsAdminModalOpen(true)}
-          variant="secondary"
-          size="sm"
-          className="bg-gray-800 text-white hover:bg-gray-700 shadow-lg"
-        >
-          <Icon name="Settings" size={16} className="mr-2" />
-          Администратор
-        </Button>
+      <div className="w-full max-w-6xl mx-auto px-4 mt-8 mb-4">
+        <div className="text-center">
+          <Button
+            onClick={() => setIsAdminModalOpen(true)}
+            variant="secondary"
+            size="sm"
+            className="bg-gray-800 text-white hover:bg-gray-700 shadow-lg"
+          >
+            <Icon name="Settings" size={16} className="mr-2" />
+            Администратор
+          </Button>
+        </div>
       </div>
 
       {/* Admin Login Modal */}
