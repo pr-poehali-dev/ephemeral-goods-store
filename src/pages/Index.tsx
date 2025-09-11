@@ -19,18 +19,24 @@ export default function Index() {
   );
 
   const addToCart = (emotionId: string) => {
+    const availableStock = inventory[emotionId] || 0;
+    const currentQuantity = getEmotionQuantity(emotionId);
+    
+    if (currentQuantity >= availableStock) {
+      return; // Не можем добавить больше, чем есть в наличии
+    }
+    
     setCart(prev => {
       const existing = prev.find(item => item.emotionId === emotionId);
-      if (existing && existing.quantity < 20) {
+      if (existing) {
         return prev.map(item =>
           item.emotionId === emotionId
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
-      } else if (!existing) {
+      } else {
         return [...prev, { emotionId, quantity: 1 }];
       }
-      return prev;
     });
   };
 
@@ -54,7 +60,9 @@ export default function Index() {
   };
 
   const getAvailableStock = (emotionId: string) => {
-    return inventory[emotionId] || 0;
+    const totalStock = inventory[emotionId] || 0;
+    const usedQuantity = getEmotionQuantity(emotionId);
+    return totalStock - usedQuantity;
   };
 
   const getCartItemsCount = () => {

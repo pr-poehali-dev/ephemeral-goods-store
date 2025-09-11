@@ -33,7 +33,7 @@ export default function EmotionCard({
         <div className="space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-sm font-medium">Доступно:</span>
-            <span className="text-sm font-semibold">{20 - quantity}/20</span>
+            <span className="text-sm font-semibold">{availableStock}/20</span>
           </div>
           <div className="flex border-4 border-black rounded overflow-hidden h-8 bg-gray-900 shadow-lg">
             {Array.from({ length: 20 }, (_, index) => {
