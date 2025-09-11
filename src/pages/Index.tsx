@@ -84,6 +84,10 @@ const PRICE_PER_UNIT = 1000;
 export default function Index() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
+  const [loginForm, setLoginForm] = useState({ email: '', password: '' });
+  const [inventory, setInventory] = useState<Record<string, number>>(emotions.reduce((acc, emotion) => ({ ...acc, [emotion.id]: 20 }), {}));
 
   const addToCart = (emotionId: string) => {
     setCart(prev => {
@@ -122,6 +126,30 @@ export default function Index() {
 
   const getEmotionQuantity = (emotionId: string) => {
     return cart.find(item => item.emotionId === emotionId)?.quantity || 0;
+  };
+
+  const getAvailableStock = (emotionId: string) => {
+    return inventory[emotionId] || 0;
+  };
+
+  const handleAdminLogin = () => {
+    const ADMIN_EMAIL = 's4777752@ya.ru';
+    const ADMIN_PASSWORD = '89024777752s';
+    
+    if (loginForm.email === ADMIN_EMAIL && loginForm.password === ADMIN_PASSWORD) {
+      setIsAdminAuthenticated(true);
+      setIsAdminModalOpen(false);
+      setLoginForm({ email: '', password: '' });
+    } else {
+      alert('Неверные данные для входа!');
+    }
+  };
+
+  const updateInventory = (emotionId: string, newQuantity: number) => {
+    setInventory(prev => ({
+      ...prev,
+      [emotionId]: Math.max(0, Math.min(20, newQuantity))
+    }));
   };
 
   const getCartItemsCount = () => {
@@ -196,7 +224,7 @@ export default function Index() {
                   </div>
                   <div className="flex border-4 border-black rounded overflow-hidden h-8 bg-gray-900 shadow-lg">
                     {Array.from({ length: 20 }, (_, index) => {
-                      const isAvailable = index < (20 - getEmotionQuantity(emotion.id));
+                      const isAvailable = index < getAvailableStock(emotion.id);
                       
                       return (
                         <div
@@ -212,10 +240,10 @@ export default function Index() {
                   </div>
                   <div className="mt-2 text-center">
                     <div className="text-xs text-gray-600">
-                      Остаток: <span className="font-semibold text-black">{20 - getEmotionQuantity(emotion.id)} шт</span>
+                      Остаток: <span className="font-semibold text-black">{getAvailableStock(emotion.id)} шт</span>
                     </div>
                     <div className="text-xs text-gray-600">
-                      {getEmotionQuantity(emotion.id) >= 10 ? (
+                      {getAvailableStock(emotion.id) <= 10 ? (
                         <span className="text-red-600 font-medium">Товар заканчивается</span>
                       ) : (
                         <span className="text-green-600 font-medium">В наличии</span>
@@ -243,7 +271,7 @@ export default function Index() {
                       size="sm"
                       variant="outline"
                       onClick={() => addToCart(emotion.id)}
-                      disabled={getEmotionQuantity(emotion.id) >= 20}
+                      disabled={getEmotionQuantity(emotion.id) >= getAvailableStock(emotion.id)}
                       className="h-8 w-8 p-0"
                     >
                       <Icon name="Plus" size={16} />
@@ -340,6 +368,153 @@ export default function Index() {
           </>
         )}
       </div>
+
+      {/* Admin Button */}
+      <div className="fixed bottom-4 right-4 z-30">
+        <Button
+          onClick={() => setIsAdminModalOpen(true)}
+          variant="secondary"
+          size="sm"
+          className="bg-gray-800 text-white hover:bg-gray-700 shadow-lg"
+        >
+          <Icon name="Settings" size={16} className="mr-2" />
+          Администратор
+        </Button>
+      </div>
+
+      {/* Admin Login Modal */}
+      {isAdminModalOpen && !isAdminAuthenticated && (
+        <>
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            onClick={() => setIsAdminModalOpen(false)}
+          />
+          
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <Card className="w-full max-w-md">
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Icon name="Lock" size={20} />
+                    Вход в админ-панель
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={() => setIsAdminModalOpen(false)}
+                  >
+                    <Icon name="X" size={16} />
+                  </Button>
+                </CardTitle>
+              </CardHeader>
+              
+              <CardContent className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Email</label>
+                  <input
+                    type="email"
+                    value={loginForm.email}
+                    onChange={(e) => setLoginForm(prev => ({ ...prev, email: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Введите email"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium mb-2">Пароль</label>
+                  <input
+                    type="password"
+                    value={loginForm.password}
+                    onChange={(e) => setLoginForm(prev => ({ ...prev, password: e.target.value }))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Введите пароль"
+                  />
+                </div>
+                
+                <Button 
+                  onClick={handleAdminLogin}
+                  className="w-full"
+                >
+                  <Icon name="LogIn" size={16} className="mr-2" />
+                  Войти
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </>
+      )}
+
+      {/* Admin Panel */}
+      {isAdminAuthenticated && (
+        <>
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            onClick={() => setIsAdminAuthenticated(false)}
+          />
+          
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <Card className="w-full max-w-4xl max-h-[90vh] overflow-auto">
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Icon name="Package" size={20} />
+                    Управление товарами
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={() => setIsAdminAuthenticated(false)}
+                  >
+                    <Icon name="X" size={16} />
+                  </Button>
+                </CardTitle>
+              </CardHeader>
+              
+              <CardContent>
+                <div className="grid gap-4">
+                  {emotions.map(emotion => (
+                    <div key={emotion.id} className="flex items-center justify-between p-4 border rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{emotion.emoji}</span>
+                        <div>
+                          <h4 className="font-medium">{emotion.name}</h4>
+                          <p className="text-sm text-muted-foreground">
+                            В наличии: {getAvailableStock(emotion.id)} шт
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => updateInventory(emotion.id, getAvailableStock(emotion.id) - 1)}
+                          disabled={getAvailableStock(emotion.id) <= 0}
+                        >
+                          <Icon name="Minus" size={16} />
+                        </Button>
+                        
+                        <span className="w-12 text-center font-semibold">
+                          {getAvailableStock(emotion.id)}
+                        </span>
+                        
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => updateInventory(emotion.id, getAvailableStock(emotion.id) + 1)}
+                          disabled={getAvailableStock(emotion.id) >= 20}
+                        >
+                          <Icon name="Plus" size={16} />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </>
+      )}
     </div>
   );
 }
