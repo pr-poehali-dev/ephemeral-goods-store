@@ -215,7 +215,7 @@ export default function Index() {
                       Остаток: <span className="font-semibold text-black">{20 - getEmotionQuantity(emotion.id)} шт</span>
                     </div>
                     <div className="text-xs text-gray-600">
-                      {getEmotionQuantity(emotion.id) > 0 ? (
+                      {getEmotionQuantity(emotion.id) >= 10 ? (
                         <span className="text-red-600 font-medium">Товар заканчивается</span>
                       ) : (
                         <span className="text-green-600 font-medium">В наличии</span>
