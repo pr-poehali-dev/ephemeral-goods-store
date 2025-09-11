@@ -210,6 +210,18 @@ export default function Index() {
                       );
                     })}
                   </div>
+                  <div className="mt-2 text-center">
+                    <div className="text-xs text-gray-600">
+                      Остаток: <span className="font-semibold text-black">{20 - getEmotionQuantity(emotion.id)} шт</span>
+                    </div>
+                    <div className="text-xs text-gray-600">
+                      {getEmotionQuantity(emotion.id) > 0 ? (
+                        <span className="text-red-600 font-medium">Товар заканчивается</span>
+                      ) : (
+                        <span className="text-green-600 font-medium">В наличии</span>
+                      )}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flex items-center justify-between">
