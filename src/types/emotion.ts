@@ -12,7 +12,7 @@ export interface CartItem {
   quantity: number;
 }
 
-export const PRICE_PER_UNIT = 1000;
+export const PRICE_PER_UNIT = 300;
 
 export const emotions: Emotion[] = [
   // Положительные эмоции
