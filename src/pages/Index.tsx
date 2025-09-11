@@ -194,7 +194,7 @@ export default function Index() {
                     <span className="text-sm font-medium">Доступно:</span>
                     <span className="text-sm font-semibold">{20 - getEmotionQuantity(emotion.id)}/20</span>
                   </div>
-                  <div className={`flex border-4 border-black rounded overflow-hidden h-6 ${emotion.color.replace('-200', '-400')}`}>
+                  <div className="flex border-4 border-black rounded overflow-hidden h-8 bg-gray-900 shadow-lg">
                     {Array.from({ length: 20 }, (_, index) => {
                       const isAvailable = index < (20 - getEmotionQuantity(emotion.id));
                       
@@ -203,8 +203,8 @@ export default function Index() {
                           key={index}
                           className={`flex-1 transition-all duration-200 border-r border-border last:border-r-0 ${
                             isAvailable
-                              ? emotion.color.replace('bg-', 'bg-').replace('-200', '-500')
-                              : 'bg-gray-200'
+                              ? emotion.color.replace('-200', '-400') + ' shadow-sm'
+                              : 'bg-gray-700'
                           }`}
                         />
                       );
