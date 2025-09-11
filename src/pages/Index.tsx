@@ -261,13 +261,32 @@ export default function Index() {
           ))}
         </div>
 
-        {/* Cart Section */}
+        {/* Cart Modal */}
         {isCartOpen && (
-          <Card className="max-w-2xl mx-auto shadow-2xl border-0">
+          <>
+            {/* Backdrop */}
+            <div 
+              className="fixed inset-0 bg-black bg-opacity-50 z-40"
+              onClick={() => setIsCartOpen(false)}
+            />
+            
+            {/* Modal */}
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+              <Card className="max-w-2xl w-full max-h-[90vh] overflow-auto shadow-2xl border-0 relative">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Icon name="ShoppingCart" size={24} />
-                Корзина покупок
+              <CardTitle className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Icon name="ShoppingCart" size={24} />
+                  Корзина покупок
+                </div>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={() => setIsCartOpen(false)}
+                  className="hover:bg-gray-100"
+                >
+                  <Icon name="X" size={20} />
+                </Button>
               </CardTitle>
               <CardDescription>
                 Ваши выбранные эмоции
@@ -316,7 +335,9 @@ export default function Index() {
                 </div>
               )}
             </CardContent>
-          </Card>
+              </Card>
+            </div>
+          </>
         )}
       </div>
     </div>
