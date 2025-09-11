@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { emotions } from '@/types/emotion';
+import { useRef, useCallback } from 'react';
 
 interface AdminPanelProps {
   isOpen: boolean;
@@ -20,11 +21,34 @@ export default function AdminPanel({
   onUpdateInventory,
   onSave
 }: AdminPanelProps) {
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  
   if (!isOpen) return null;
 
   const getAvailableStock = (emotionId: string) => {
     return inventory[emotionId] || 0;
   };
+
+  const startAutoUpdate = useCallback((emotionId: string, increment: boolean) => {
+    const updateValue = () => {
+      const currentStock = getAvailableStock(emotionId);
+      const newValue = increment 
+        ? Math.min(currentStock + 1, 20)
+        : Math.max(currentStock - 1, 0);
+      onUpdateInventory(emotionId, newValue);
+    };
+    
+    updateValue(); // Первое обновление сразу
+    
+    intervalRef.current = setInterval(updateValue, 150);
+  }, [inventory, onUpdateInventory]);
+
+  const stopAutoUpdate = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
 
   return (
     <>
@@ -69,7 +93,11 @@ export default function AdminPanel({
                     <Button
                       size="sm"
                       variant="outline"
-                      onClick={() => onUpdateInventory(emotion.id, getAvailableStock(emotion.id) - 1)}
+                      onMouseDown={() => startAutoUpdate(emotion.id, false)}
+                      onMouseUp={stopAutoUpdate}
+                      onMouseLeave={stopAutoUpdate}
+                      onTouchStart={() => startAutoUpdate(emotion.id, false)}
+                      onTouchEnd={stopAutoUpdate}
                       disabled={getAvailableStock(emotion.id) <= 0}
                     >
                       <Icon name="Minus" size={16} />
@@ -82,7 +110,11 @@ export default function AdminPanel({
                     <Button
                       size="sm"
                       variant="outline"
-                      onClick={() => onUpdateInventory(emotion.id, getAvailableStock(emotion.id) + 1)}
+                      onMouseDown={() => startAutoUpdate(emotion.id, true)}
+                      onMouseUp={stopAutoUpdate}
+                      onMouseLeave={stopAutoUpdate}
+                      onTouchStart={() => startAutoUpdate(emotion.id, true)}
+                      onTouchEnd={stopAutoUpdate}
                       disabled={getAvailableStock(emotion.id) >= 20}
                     >
                       <Icon name="Plus" size={16} />
