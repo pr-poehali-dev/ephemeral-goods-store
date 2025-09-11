@@ -14,9 +14,13 @@ export default function Index() {
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
-  const [inventory, setInventory] = useState<Record<string, number>>(
-    emotions.reduce((acc, emotion) => ({ ...acc, [emotion.id]: 20 }), {})
-  );
+  const [inventory, setInventory] = useState<Record<string, number>>(() => {
+    const saved = localStorage.getItem('emotion-shop-inventory');
+    return saved 
+      ? JSON.parse(saved)
+      : emotions.reduce((acc, emotion) => ({ ...acc, [emotion.id]: 20 }), {});
+  });
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   const addToCart = (emotionId: string) => {
     const availableStock = inventory[emotionId] || 0;
@@ -101,6 +105,12 @@ export default function Index() {
       ...prev,
       [emotionId]: clampedQuantity
     }));
+    setHasUnsavedChanges(true);
+  };
+
+  const saveInventory = () => {
+    localStorage.setItem('emotion-shop-inventory', JSON.stringify(inventory));
+    setHasUnsavedChanges(false);
   };
 
   const handleLoginFormChange = (field: 'email' | 'password', value: string) => {
@@ -200,8 +210,10 @@ export default function Index() {
       <AdminPanel
         isOpen={isAdminAuthenticated}
         inventory={inventory}
+        hasUnsavedChanges={hasUnsavedChanges}
         onClose={() => setIsAdminAuthenticated(false)}
         onUpdateInventory={updateInventory}
+        onSave={saveInventory}
       />
     </div>
   );

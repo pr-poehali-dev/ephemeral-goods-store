@@ -6,15 +6,19 @@ import { emotions } from '@/types/emotion';
 interface AdminPanelProps {
   isOpen: boolean;
   inventory: Record<string, number>;
+  hasUnsavedChanges: boolean;
   onClose: () => void;
   onUpdateInventory: (emotionId: string, newQuantity: number) => void;
+  onSave: () => void;
 }
 
 export default function AdminPanel({ 
   isOpen, 
   inventory, 
+  hasUnsavedChanges,
   onClose, 
-  onUpdateInventory 
+  onUpdateInventory,
+  onSave
 }: AdminPanelProps) {
   if (!isOpen) return null;
 
@@ -86,6 +90,23 @@ export default function AdminPanel({
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="flex justify-end gap-2 mt-6 pt-4 border-t">
+              <Button 
+                variant="outline" 
+                onClick={onClose}
+              >
+                Отмена
+              </Button>
+              <Button 
+                onClick={onSave}
+                disabled={!hasUnsavedChanges}
+                className="min-w-[120px]"
+              >
+                <Icon name="Save" size={16} className="mr-2" />
+                {hasUnsavedChanges ? 'Сохранить' : 'Сохранено'}
+              </Button>
             </div>
           </CardContent>
         </Card>
