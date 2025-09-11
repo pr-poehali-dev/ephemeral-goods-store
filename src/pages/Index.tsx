@@ -62,7 +62,7 @@ export default function Index() {
   const getAvailableStock = (emotionId: string) => {
     const totalStock = inventory[emotionId] || 0;
     const usedQuantity = getEmotionQuantity(emotionId);
-    return totalStock - usedQuantity;
+    return Math.max(0, totalStock - usedQuantity);
   };
 
   const getCartItemsCount = () => {
@@ -83,9 +83,23 @@ export default function Index() {
   };
 
   const updateInventory = (emotionId: string, newQuantity: number) => {
+    const clampedQuantity = Math.max(0, Math.min(20, newQuantity));
+    const currentInCart = getEmotionQuantity(emotionId);
+    
+    // Если админ устанавливает количество меньше чем в корзине, корректируем корзину
+    if (clampedQuantity < currentInCart) {
+      setCart(prev => 
+        prev.map(item =>
+          item.emotionId === emotionId
+            ? { ...item, quantity: clampedQuantity }
+            : item
+        ).filter(item => item.quantity > 0)
+      );
+    }
+    
     setInventory(prev => ({
       ...prev,
-      [emotionId]: Math.max(0, Math.min(20, newQuantity))
+      [emotionId]: clampedQuantity
     }));
   };
 
