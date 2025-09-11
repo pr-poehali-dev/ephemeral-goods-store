@@ -204,7 +204,7 @@ export default function Index() {
                           className={`flex-1 transition-all duration-200 border-r border-border last:border-r-0 ${
                             isAvailable
                               ? emotion.color.replace('-200', '-400') + ' shadow-sm'
-                              : 'bg-gray-700'
+                              : 'bg-white'
                           }`}
                         />
                       );
