@@ -117,6 +117,17 @@ export default function Index() {
     setLoginForm(prev => ({ ...prev, [field]: value }));
   };
 
+  const handleAdminLogin = () => {
+    // Простая проверка логина (в реальном приложении должна быть серверная валидация)
+    if (loginForm.email === 'admin@shop.ru' && loginForm.password === 'admin123') {
+      setIsAdminAuthenticated(true);
+      setIsAdminModalOpen(false);
+      setLoginForm({ email: '', password: '' });
+    } else {
+      alert('Неверный логин или пароль! Используйте: admin@shop.ru / admin123');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
       {/* Header */}
