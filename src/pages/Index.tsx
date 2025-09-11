@@ -73,7 +73,18 @@ export default function Index() {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
 
-
+  const handleAdminLogin = () => {
+    const ADMIN_EMAIL = 's4777752@ya.ru';
+    const ADMIN_PASSWORD = '89024777752s';
+    
+    if (loginForm.email === ADMIN_EMAIL && loginForm.password === ADMIN_PASSWORD) {
+      setIsAdminAuthenticated(true);
+      setIsAdminModalOpen(false);
+      setLoginForm({ email: '', password: '' });
+    } else {
+      alert('Неверные данные для входа!');
+    }
+  };
 
   const updateInventory = (emotionId: string, newQuantity: number) => {
     const clampedQuantity = Math.max(0, Math.min(20, newQuantity));
@@ -104,17 +115,6 @@ export default function Index() {
 
   const handleLoginFormChange = (field: 'email' | 'password', value: string) => {
     setLoginForm(prev => ({ ...prev, [field]: value }));
-  };
-
-  const handleAdminLogin = () => {
-    // Простая проверка логина (в реальном приложении должна быть серверная валидация)
-    if (loginForm.email === 's4777752@ya.ru' && loginForm.password === '89024777752s') {
-      setIsAdminAuthenticated(true);
-      setIsAdminModalOpen(false);
-      setLoginForm({ email: '', password: '' });
-    } else {
-      alert('Неверный логин или пароль! Используйте: s4777752@ya.ru / 89024777752s');
-    }
   };
 
   return (
