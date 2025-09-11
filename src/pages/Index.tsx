@@ -250,10 +250,7 @@ export default function Index() {
               <Icon name="Shield" size={16} className="mr-2" />
               Безопасное пространство для души
             </div>
-            <div className="flex items-center text-gray-300">
-              <Icon name="Heart" size={16} className="mr-2" />
-              Магазин Эмоций © 2024
-            </div>
+            <div className="flex items-center text-gray-300">Магазин Эмоций © 2025</div>
           </div>
           <div className="mt-4 text-sm text-gray-400">
             Данный сервис носит развлекательный характер и не заменяет профессиональную помощь
