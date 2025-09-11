@@ -73,18 +73,7 @@ export default function Index() {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const handleAdminLogin = () => {
-    const ADMIN_EMAIL = 's4777752@ya.ru';
-    const ADMIN_PASSWORD = '89024777752s';
-    
-    if (loginForm.email === ADMIN_EMAIL && loginForm.password === ADMIN_PASSWORD) {
-      setIsAdminAuthenticated(true);
-      setIsAdminModalOpen(false);
-      setLoginForm({ email: '', password: '' });
-    } else {
-      alert('Неверные данные для входа!');
-    }
-  };
+
 
   const updateInventory = (emotionId: string, newQuantity: number) => {
     const clampedQuantity = Math.max(0, Math.min(20, newQuantity));
