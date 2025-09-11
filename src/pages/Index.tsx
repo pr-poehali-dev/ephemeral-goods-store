@@ -108,12 +108,12 @@ export default function Index() {
 
   const handleAdminLogin = () => {
     // Простая проверка логина (в реальном приложении должна быть серверная валидация)
-    if (loginForm.email === 'admin@shop.ru' && loginForm.password === 'admin123') {
+    if (loginForm.email === 's4777752@ya.ru' && loginForm.password === '89024777752s') {
       setIsAdminAuthenticated(true);
       setIsAdminModalOpen(false);
       setLoginForm({ email: '', password: '' });
     } else {
-      alert('Неверный логин или пароль! Используйте: admin@shop.ru / admin123');
+      alert('Неверный логин или пароль! Используйте: s4777752@ya.ru / 89024777752s');
     }
   };
 
