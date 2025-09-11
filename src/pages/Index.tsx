@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import EmotionCard from '@/components/EmotionCard';
 import CartModal from '@/components/CartModal';
@@ -215,6 +216,32 @@ export default function Index() {
         onUpdateInventory={updateInventory}
         onSave={saveInventory}
       />
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-8">
+        <div className="container mx-auto px-6 text-center">
+          <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
+            <Link 
+              to="/terms" 
+              className="flex items-center text-gray-300 hover:text-white transition-colors"
+            >
+              <Icon name="FileText" size={16} className="mr-2" />
+              Правила использования
+            </Link>
+            <div className="flex items-center text-gray-300">
+              <Icon name="Shield" size={16} className="mr-2" />
+              Безопасное пространство для души
+            </div>
+            <div className="flex items-center text-gray-300">
+              <Icon name="Heart" size={16} className="mr-2" />
+              Магазин Эмоций © 2024
+            </div>
+          </div>
+          <div className="mt-4 text-sm text-gray-400">
+            Данный сервис носит развлекательный характер и не заменяет профессиональную помощь
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
