@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import EmotionCard from '@/components/EmotionCard';
 import CartModal from '@/components/CartModal';
+import PsychologyModal from '@/components/PsychologyModal';
 import AdminLoginModal from '@/components/AdminLoginModal';
 import AdminPanel from '@/components/AdminPanel';
 import { emotions, CartItem } from '@/types/emotion';
@@ -22,6 +23,7 @@ export default function Index() {
       : emotions.reduce((acc, emotion) => ({ ...acc, [emotion.id]: 20 }), {});
   });
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [isPsychologyModalOpen, setIsPsychologyModalOpen] = useState(false);
 
   const addToCart = (emotionId: string) => {
     const availableStock = inventory[emotionId] || 0;
@@ -138,19 +140,30 @@ export default function Index() {
               </div>
             </div>
             
-            <Button
-              variant="outline"
-              className="relative hover:scale-105 transition-transform"
-              onClick={() => setIsCartOpen(!isCartOpen)}
-            >
-              <Icon name="ShoppingCart" size={20} />
-              <span className="ml-2">Корзина</span>
-              {getCartItemsCount() > 0 && (
-                <Badge className="absolute -top-2 -right-2 bg-primary text-primary-foreground">
-                  {getCartItemsCount()}
-                </Badge>
-              )}
-            </Button>
+            <div className="flex space-x-3">
+              <Button
+                variant="outline"
+                className="hover:scale-105 transition-transform"
+                onClick={() => setIsPsychologyModalOpen(true)}
+              >
+                <Icon name="Brain" size={20} />
+                <span className="ml-2">Как это работает?</span>
+              </Button>
+              
+              <Button
+                variant="outline"
+                className="relative hover:scale-105 transition-transform"
+                onClick={() => setIsCartOpen(!isCartOpen)}
+              >
+                <Icon name="ShoppingCart" size={20} />
+                <span className="ml-2">Корзина</span>
+                {getCartItemsCount() > 0 && (
+                  <Badge className="absolute -top-2 -right-2 bg-primary text-primary-foreground">
+                    {getCartItemsCount()}
+                  </Badge>
+                )}
+              </Button>
+            </div>
           </div>
         </div>
       </header>
@@ -160,75 +173,7 @@ export default function Index() {
           <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-[#000000]">
             Каталог Чувств и Эмоций
           </h2>
-          <p className="text-lg max-w-2xl mx-auto text-[#000000] mb-8">Выберите нужные эмоции и добавьте их в свою жизнь. Каждое деление 1товар стоит 1000р , после покупки товар действует сразу !</p>
-          
-          {/* Psychological Effect Description */}
-          <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <Icon name="Brain" size={32} className="text-purple-600 mr-3" />
-              <h3 className="text-2xl font-bold text-gray-800">Психология Эмоциональных Покупок</h3>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-6 text-left">
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <Icon name="Sparkles" size={20} className="text-blue-500 mr-3 mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Эффект Плацебо</h4>
-                    <p className="text-gray-600 text-sm">Сам акт "покупки" эмоции активирует психологические механизмы самовнушения и создаёт ожидание позитивных изменений.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <Icon name="Target" size={20} className="text-green-500 mr-3 mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Фокусировка Внимания</h4>
-                    <p className="text-gray-600 text-sm">Выбор конкретной эмоции направляет ваше внимание на соответствующие аспекты жизни, делая их более заметными.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <Icon name="RefreshCw" size={20} className="text-orange-500 mr-3 mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Нейропластичность</h4>
-                    <p className="text-gray-600 text-sm">Осознанная работа с эмоциями помогает формировать новые нейронные связи и эмоциональные паттерны.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <Icon name="Zap" size={20} className="text-yellow-500 mr-3 mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Ритуал Трансформации</h4>
-                    <p className="text-gray-600 text-sm">Процесс выбора и "покупки" создаёт символический ритуал изменения, который психологически закрепляет намерение.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <Icon name="Heart" size={20} className="text-red-500 mr-3 mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Эмоциональная Валидация</h4>
-                    <p className="text-gray-600 text-sm">Признание и "покупка" эмоции помогает принять и легализовать свои чувства, что само по себе терапевтично.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <Icon name="Lightbulb" size={20} className="text-purple-500 mr-3 mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-1">Осознанность</h4>
-                    <p className="text-gray-600 text-sm">Процесс выбора эмоции повышает эмоциональную осознанность и помогает лучше понимать свои потребности.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-              <p className="text-blue-800 text-sm font-medium">
-                💡 <strong>Научный факт:</strong> Исследования показывают, что символические действия и ритуалы действительно влияют на наше эмоциональное состояние через активацию психосоматических механизмов.
-              </p>
-            </div>
-          </div>
+          <p className="text-lg max-w-2xl mx-auto text-[#000000]">Выберите нужные эмоции и добавьте их в свою жизнь. Каждое деление 1товар стоит 1000р , после покупки товар действует сразу !</p>
         </div>
 
         {/* Emotions Grid */}
@@ -266,6 +211,11 @@ export default function Index() {
         isOpen={isCartOpen} 
         cart={cart} 
         onClose={() => setIsCartOpen(false)} 
+      />
+
+      <PsychologyModal
+        isOpen={isPsychologyModalOpen}
+        onClose={() => setIsPsychologyModalOpen(false)}
       />
 
       <AdminLoginModal
