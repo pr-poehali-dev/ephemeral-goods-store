@@ -56,7 +56,9 @@ export default function EmotionCard({
               Остаток: <span className="font-semibold text-black">{availableStock} шт</span>
             </div>
             <div className="text-xs text-gray-600">
-              {availableStock <= 10 ? (
+              {availableStock === 0 ? (
+                <span className="text-red-600 font-bold">Товар не доступен</span>
+              ) : availableStock <= 10 ? (
                 <span className="text-red-600 font-medium">Товар заканчивается</span>
               ) : (
                 <span className="text-green-600 font-medium">В наличии</span>
