@@ -173,7 +173,7 @@ export default function Index() {
           <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-[#000000]">
             Каталог Чувств и Эмоций
           </h2>
-          <p className="text-lg max-w-2xl mx-auto text-[#000000]">Выберите нужные эмоции и добавьте их в свою жизнь. Каждое деление 1товар стоит 300р , после покупки товар будет активирован и скоро начнет действовать !</p>
+          <p className="text-lg max-w-2xl mx-auto text-[#000000]">Выберите нужные эмоции и добавьте их в свою жизнь. Каждое деление 1товар стоит 300р , после покупки товар будет активирован и скоро начнет действовать</p>
         </div>
 
         {/* Emotions Grid */}
