@@ -177,17 +177,39 @@ export default function Index() {
         </div>
 
         {/* Emotions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {emotions.map((emotion) => (
-            <EmotionCard
-              key={emotion.id}
-              emotion={emotion}
-              quantity={getEmotionQuantity(emotion.id)}
-              availableStock={getAvailableStock(emotion.id)}
-              onAddToCart={addToCart}
-              onRemoveFromCart={removeFromCart}
-            />
-          ))}
+        <div className="mb-12">
+          {/* Основные эмоции */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {emotions.filter(emotion => !emotion.id.includes('physical-needs') && !emotion.id.includes('emotional-needs') && !emotion.id.includes('aspirations') && !emotion.id.includes('dreams') && !emotion.id.includes('values') && !emotion.id.includes('motivation') && !emotion.id.includes('priorities') && !emotion.id.includes('randomness') && !emotion.id.includes('luck') && !emotion.id.includes('strategy') && !emotion.id.includes('synchronicity') && !emotion.id.includes('risk') && !emotion.id.includes('receptivity') && !emotion.id.includes('faith') && !emotion.id.includes('hope') && !emotion.id.includes('persistence') && !emotion.id.includes('self-discipline') && !emotion.id.includes('trust-process') && !emotion.id.includes('determination') && !emotion.id.includes('focus')).map((emotion) => (
+              <EmotionCard
+                key={emotion.id}
+                emotion={emotion}
+                quantity={getEmotionQuantity(emotion.id)}
+                availableStock={getAvailableStock(emotion.id)}
+                onAddToCart={addToCart}
+                onRemoveFromCart={removeFromCart}
+              />
+            ))}
+          </div>
+
+          {/* Аспекты жизни */}
+          <div className="text-center mb-8">
+            <h3 className="text-3xl font-bold text-[#000000] mb-2">АСПЕКТЫ ЖИЗНИ</h3>
+            <p className="text-lg text-[#000000]">Внутренние качества и жизненные принципы</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {emotions.filter(emotion => emotion.id.includes('physical-needs') || emotion.id.includes('emotional-needs') || emotion.id.includes('aspirations') || emotion.id.includes('dreams') || emotion.id.includes('values') || emotion.id.includes('motivation') || emotion.id.includes('priorities') || emotion.id.includes('randomness') || emotion.id.includes('luck') || emotion.id.includes('strategy') || emotion.id.includes('synchronicity') || emotion.id.includes('risk') || emotion.id.includes('receptivity') || emotion.id.includes('faith') || emotion.id.includes('hope') || emotion.id.includes('persistence') || emotion.id.includes('self-discipline') || emotion.id.includes('trust-process') || emotion.id.includes('determination') || emotion.id.includes('focus')).map((emotion) => (
+              <EmotionCard
+                key={emotion.id}
+                emotion={emotion}
+                quantity={getEmotionQuantity(emotion.id)}
+                availableStock={getAvailableStock(emotion.id)}
+                onAddToCart={addToCart}
+                onRemoveFromCart={removeFromCart}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Admin Button */}
