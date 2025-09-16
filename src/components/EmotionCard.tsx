@@ -53,10 +53,10 @@ export default function EmotionCard({
               return (
                 <div
                   key={index}
-                  className={`flex-1 transition-all duration-200 border-r border-border last:border-r-0 ${
+                  className={`flex-1 transition-all duration-200 border-r-2 border-gray-800 last:border-r-0 ${
                     isAvailable
-                      ? emotion.color.replace('-200', '-400') + ' shadow-sm'
-                      : 'bg-white'
+                      ? emotion.color.replace('-200', '-600') + ' shadow-lg border-gray-900'
+                      : 'bg-gray-300 border-gray-700'
                   }`}
                 />
               );
