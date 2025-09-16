@@ -46,17 +46,17 @@ export default function EmotionCard({
             <span className="text-sm font-medium">Доступно:</span>
             <span className="text-sm font-semibold">{stock}/20</span>
           </div>
-          <div className="flex border-4 border-black rounded overflow-hidden h-8 bg-amber-900 shadow-lg">
+          <div className="flex border-4 border-black rounded overflow-hidden h-8 bg-gray-900 shadow-lg">
             {Array.from({ length: 20 }, (_, index) => {
               const isAvailable = index < stock;
               
               return (
                 <div
                   key={index}
-                  className={`flex-1 transition-all duration-200 border-r-2 border-amber-800 last:border-r-0 ${
+                  className={`flex-1 transition-all duration-200 border-r border-border last:border-r-0 ${
                     isAvailable
-                      ? 'bg-amber-600 shadow-lg'
-                      : 'bg-amber-200'
+                      ? emotion.color.replace('-200', '-400') + ' shadow-sm'
+                      : 'bg-white'
                   }`}
                 />
               );
