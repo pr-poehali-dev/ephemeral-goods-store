@@ -23,14 +23,8 @@ export default function EmotionCard({
   return (
     <Card className="group hover:shadow-md transition-all duration-200 border-2 border-gray-600 bg-gray-200">
       <CardHeader className="text-center pb-4">
-        <div className="relative">
-          <div className={`w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${emotion.gradient} flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform border-2 border-black`}>
-            {emotion.emoji}
-          </div>
-          {/* Бейдж с количеством товара */}
-          <div className="absolute -top-2 -right-2 bg-black text-white text-xs font-bold rounded-full h-8 w-8 flex items-center justify-center border-2 border-white shadow-lg">
-            {stock}
-          </div>
+        <div className={`w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${emotion.gradient} flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform border-2 border-black`}>
+          {emotion.emoji}
         </div>
         <CardTitle className="text-xl font-semibold flex items-center justify-center gap-2">
           {emotion.name}
