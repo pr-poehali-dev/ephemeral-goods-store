@@ -21,10 +21,25 @@ export default function EmotionCard({
   return (
     <Card className="group hover:shadow-md transition-all duration-200 border-2 border-gray-600 bg-gray-200">
       <CardHeader className="text-center pb-4">
-        <div className={`w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-gray-200 to-gray-400 flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform border-2 border-black`}>
-          {emotion.emoji}
+        <div className="relative">
+          <div className={`w-20 h-20 mx-auto rounded-full bg-gradient-to-br ${emotion.gradient} flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform border-2 border-black`}>
+            {emotion.emoji}
+          </div>
+          {/* Бейдж с количеством товара */}
+          <div className="absolute -top-2 -right-2 bg-black text-white text-xs font-bold rounded-full h-8 w-8 flex items-center justify-center border-2 border-white shadow-lg">
+            {availableStock}
+          </div>
         </div>
-        <CardTitle className="text-xl font-semibold">{emotion.name}</CardTitle>
+        <CardTitle className="text-xl font-semibold flex items-center justify-center gap-2">
+          {emotion.name}
+          <span className={`px-2 py-1 rounded-full text-xs font-bold ${
+            availableStock === 0 ? 'bg-red-500 text-white' :
+            availableStock <= 5 ? 'bg-yellow-500 text-black' :
+            'bg-green-500 text-white'
+          }`}>
+            {availableStock}
+          </span>
+        </CardTitle>
         <CardDescription className="text-sm">{emotion.description}</CardDescription>
       </CardHeader>
       
