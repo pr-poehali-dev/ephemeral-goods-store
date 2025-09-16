@@ -323,6 +323,10 @@ export default function Index() {
           <div className="mt-4 text-sm text-gray-400">
             Данный сервис носит развлекательный характер и не заменяет профессиональную помощь
           </div>
+          <div className="mt-4 text-xs text-gray-500 border-t border-gray-700 pt-4">
+            ИП Паклин Сергей Васильевич, ИНН 594200005879 ОГРН 305591619400016<br />
+            эл.почта: unix7777@ya.ru, тел: 89024777752
+          </div>
         </div>
       </footer>
     </div>
