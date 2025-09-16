@@ -18,6 +18,8 @@ export default function EmotionCard({
   onAddToCart, 
   onRemoveFromCart 
 }: EmotionCardProps) {
+  // Fallback для availableStock если undefined
+  const stock = availableStock ?? 20;
   return (
     <Card className="group hover:shadow-md transition-all duration-200 border-2 border-gray-600 bg-gray-200">
       <CardHeader className="text-center pb-4">
@@ -27,17 +29,17 @@ export default function EmotionCard({
           </div>
           {/* Бейдж с количеством товара */}
           <div className="absolute -top-2 -right-2 bg-black text-white text-xs font-bold rounded-full h-8 w-8 flex items-center justify-center border-2 border-white shadow-lg">
-            {availableStock}
+            {stock}
           </div>
         </div>
         <CardTitle className="text-xl font-semibold flex items-center justify-center gap-2">
           {emotion.name}
           <span className={`px-2 py-1 rounded-full text-xs font-bold ${
-            availableStock === 0 ? 'bg-red-500 text-white' :
-            availableStock <= 5 ? 'bg-yellow-500 text-black' :
+            stock === 0 ? 'bg-red-500 text-white' :
+            stock <= 5 ? 'bg-yellow-500 text-black' :
             'bg-green-500 text-white'
           }`}>
-            {availableStock}
+            {stock}
           </span>
         </CardTitle>
         <CardDescription className="text-sm">{emotion.description}</CardDescription>
@@ -48,11 +50,11 @@ export default function EmotionCard({
         <div className="space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-sm font-medium">Доступно:</span>
-            <span className="text-sm font-semibold">{availableStock}/20</span>
+            <span className="text-sm font-semibold">{stock}/20</span>
           </div>
           <div className="flex border-4 border-black rounded overflow-hidden h-8 bg-gray-900 shadow-lg">
             {Array.from({ length: 20 }, (_, index) => {
-              const isAvailable = index < availableStock;
+              const isAvailable = index < stock;
               
               return (
                 <div
@@ -68,12 +70,12 @@ export default function EmotionCard({
           </div>
           <div className="mt-2 text-center">
             <div className="text-xs text-gray-600">
-              Остаток: <span className="font-semibold text-black">{availableStock} шт</span>
+              Остаток: <span className="font-semibold text-black">{stock} шт</span>
             </div>
             <div className="text-xs text-gray-600">
-              {availableStock === 0 ? (
+              {stock === 0 ? (
                 <span className="text-red-600 font-bold">Товар не доступен</span>
-              ) : availableStock <= 10 ? (
+              ) : stock <= 10 ? (
                 <span className="text-red-600 font-medium">Товар заканчивается</span>
               ) : (
                 <span className="text-green-600 font-medium">В наличии</span>
@@ -101,7 +103,7 @@ export default function EmotionCard({
               size="sm"
               variant="outline"
               onClick={() => onAddToCart(emotion.id)}
-              disabled={quantity >= availableStock}
+              disabled={quantity >= stock}
               className="h-8 w-8 p-0"
             >
               <Icon name="Plus" size={16} />

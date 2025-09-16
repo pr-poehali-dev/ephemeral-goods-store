@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
@@ -18,12 +18,51 @@ export default function Index() {
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
   const [inventory, setInventory] = useState<Record<string, number>>(() => {
     const saved = localStorage.getItem('emotion-shop-inventory');
-    return saved 
-      ? JSON.parse(saved)
-      : emotions.reduce((acc, emotion) => ({ ...acc, [emotion.id]: 20 }), {});
+    const defaultInventory = emotions.reduce((acc, emotion) => ({ ...acc, [emotion.id]: 20 }), {});
+    
+    if (saved) {
+      try {
+        const parsedInventory = JSON.parse(saved);
+        // Проверяем, что все эмоции есть в инвентаре
+        const completeInventory = { ...defaultInventory };
+        Object.keys(parsedInventory).forEach(key => {
+          if (emotions.find(e => e.id === key)) {
+            completeInventory[key] = parsedInventory[key];
+          }
+        });
+        return completeInventory;
+      } catch {
+        return defaultInventory;
+      }
+    }
+    
+    return defaultInventory;
   });
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [isPsychologyModalOpen, setIsPsychologyModalOpen] = useState(false);
+
+  // Обновляем инвентарь при изменении списка эмоций и сохраняем в localStorage
+  useEffect(() => {
+    const newInventory = emotions.reduce((acc, emotion) => ({ ...acc, [emotion.id]: 20 }), {});
+    
+    // Проверяем, есть ли сохраненные данные
+    const saved = localStorage.getItem('emotion-shop-inventory');
+    if (saved) {
+      try {
+        const parsedInventory = JSON.parse(saved);
+        Object.keys(parsedInventory).forEach(key => {
+          if (emotions.find(e => e.id === key)) {
+            newInventory[key] = parsedInventory[key];
+          }
+        });
+      } catch {
+        // Используем значения по умолчанию если ошибка парсинга
+      }
+    }
+    
+    setInventory(newInventory);
+    localStorage.setItem('emotion-shop-inventory', JSON.stringify(newInventory));
+  }, []);
 
   const addToCart = (emotionId: string) => {
     const availableStock = inventory[emotionId] || 0;
