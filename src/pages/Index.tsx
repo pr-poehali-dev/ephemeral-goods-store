@@ -62,10 +62,17 @@ export default function Index() {
     
     setInventory(newInventory);
     localStorage.setItem('emotion-shop-inventory', JSON.stringify(newInventory));
-  }, []);
+  }, [emotions]);
 
   const addToCart = (emotionId: string) => {
-    const availableStock = inventory[emotionId] || 0;
+    // Убеждаемся что инвентарь инициализирован для этой эмоции
+    if (!(emotionId in inventory)) {
+      const newInventory = { ...inventory, [emotionId]: 20 };
+      setInventory(newInventory);
+      localStorage.setItem('emotion-shop-inventory', JSON.stringify(newInventory));
+    }
+    
+    const availableStock = inventory[emotionId] ?? 20;
     const currentQuantity = getEmotionQuantity(emotionId);
     
     if (currentQuantity >= availableStock) {
@@ -106,7 +113,7 @@ export default function Index() {
   };
 
   const getAvailableStock = (emotionId: string) => {
-    const totalStock = inventory[emotionId] || 0;
+    const totalStock = inventory[emotionId] ?? 20;
     const usedQuantity = getEmotionQuantity(emotionId);
     return Math.max(0, totalStock - usedQuantity);
   };
