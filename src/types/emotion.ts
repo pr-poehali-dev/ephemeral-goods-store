@@ -74,28 +74,28 @@ export const emotions: Emotion[] = [
   { id: 'shock', name: 'Шок', emoji: '😲', description: 'Сильное потрясение', color: 'bg-purple-400', gradient: 'from-purple-400 to-violet-400' },
   
   // Жизненные аспекты - Потребности и стремления
-  { id: 'physical-needs', name: 'Физические потребности', emoji: '🏃‍♂️', description: 'Базовые потребности тела', color: 'bg-red-100', gradient: 'from-red-100 to-orange-100' },
-  { id: 'emotional-needs', name: 'Эмоциональные потребности', emoji: '💖', description: 'Потребность в любви и понимании', color: 'bg-pink-100', gradient: 'from-pink-100 to-rose-100' },
-  { id: 'aspirations', name: 'Стремления', emoji: '🎯', description: 'Движение к достижению целей', color: 'bg-blue-100', gradient: 'from-blue-100 to-sky-100' },
-  { id: 'dreams', name: 'Мечты', emoji: '✨', description: 'Долгосрочные цели и идеалы', color: 'bg-purple-100', gradient: 'from-purple-100 to-violet-100' },
-  { id: 'values', name: 'Ценности', emoji: '💎', description: 'Что важно для человека', color: 'bg-emerald-100', gradient: 'from-emerald-100 to-green-100' },
-  { id: 'motivation', name: 'Мотивация', emoji: '🔥', description: 'Внутренняя или внешняя сила', color: 'bg-yellow-100', gradient: 'from-yellow-100 to-amber-100' },
-  { id: 'priorities', name: 'Приоритеты', emoji: '📋', description: 'Что актуально в данный момент', color: 'bg-indigo-100', gradient: 'from-indigo-100 to-blue-100' },
+  { id: 'physical-needs', name: 'Физические потребности', emoji: '🏃‍♂️', description: 'Базовые потребности тела', color: 'bg-red-100', gradient: 'from-red-400 to-orange-400' },
+  { id: 'emotional-needs', name: 'Эмоциональные потребности', emoji: '💖', description: 'Потребность в любви и понимании', color: 'bg-pink-100', gradient: 'from-pink-400 to-rose-400' },
+  { id: 'aspirations', name: 'Стремления', emoji: '🎯', description: 'Движение к достижению целей', color: 'bg-blue-100', gradient: 'from-blue-400 to-sky-400' },
+  { id: 'dreams', name: 'Мечты', emoji: '✨', description: 'Долгосрочные цели и идеалы', color: 'bg-purple-100', gradient: 'from-purple-400 to-violet-400' },
+  { id: 'values', name: 'Ценности', emoji: '💎', description: 'Что важно для человека', color: 'bg-emerald-100', gradient: 'from-emerald-400 to-green-400' },
+  { id: 'motivation', name: 'Мотивация', emoji: '🔥', description: 'Внутренняя или внешняя сила', color: 'bg-yellow-100', gradient: 'from-yellow-400 to-amber-400' },
+  { id: 'priorities', name: 'Приоритеты', emoji: '📋', description: 'Что актуально в данный момент', color: 'bg-indigo-100', gradient: 'from-indigo-400 to-blue-400' },
   
   // Факторы успеха - Случайность и стратегия
-  { id: 'randomness', name: 'Случайность', emoji: '🎲', description: 'Непредсказуемые факторы', color: 'bg-gray-200', gradient: 'from-gray-200 to-slate-200' },
-  { id: 'luck', name: 'Везение', emoji: '🍀', description: 'Благоприятные результаты без усилий', color: 'bg-green-200', gradient: 'from-green-200 to-lime-200' },
-  { id: 'strategy', name: 'Стратегия', emoji: '🧠', description: 'Планирование для повышения шансов', color: 'bg-blue-200', gradient: 'from-blue-200 to-sky-200' },
-  { id: 'synchronicity', name: 'Синхронность', emoji: '⚡', description: 'События в нужный момент', color: 'bg-purple-200', gradient: 'from-purple-200 to-violet-200' },
-  { id: 'risk', name: 'Риск', emoji: '🎰', description: 'Принятие рисков для успеха', color: 'bg-red-200', gradient: 'from-red-200 to-pink-200' },
-  { id: 'receptivity', name: 'Восприимчивость', emoji: '🌸', description: 'Открытость к возможностям', color: 'bg-cyan-200', gradient: 'from-cyan-200 to-blue-200' },
+  { id: 'randomness', name: 'Случайность', emoji: '🎲', description: 'Непредсказуемые факторы', color: 'bg-gray-200', gradient: 'from-gray-500 to-slate-500' },
+  { id: 'luck', name: 'Везение', emoji: '🍀', description: 'Благоприятные результаты без усилий', color: 'bg-green-200', gradient: 'from-green-400 to-lime-400' },
+  { id: 'strategy', name: 'Стратегия', emoji: '🧠', description: 'Планирование для повышения шансов', color: 'bg-blue-200', gradient: 'from-blue-500 to-sky-500' },
+  { id: 'synchronicity', name: 'Синхронность', emoji: '⚡', description: 'События в нужный момент', color: 'bg-purple-200', gradient: 'from-purple-500 to-violet-500' },
+  { id: 'risk', name: 'Риск', emoji: '🎰', description: 'Принятие рисков для успеха', color: 'bg-red-200', gradient: 'from-red-500 to-pink-500' },
+  { id: 'receptivity', name: 'Восприимчивость', emoji: '🌸', description: 'Открытость к возможностям', color: 'bg-cyan-200', gradient: 'from-cyan-400 to-blue-400' },
   
   // Внутренние качества - Вера и упорство
-  { id: 'faith', name: 'Вера', emoji: '🌟', description: 'В себя, в удачу', color: 'bg-orange-200', gradient: 'from-orange-200 to-yellow-200' },
-  { id: 'hope', name: 'Надежда', emoji: '🌅', description: 'Ожидание позитивного результата', color: 'bg-sky-200', gradient: 'from-sky-200 to-blue-200' },
-  { id: 'persistence', name: 'Упорство', emoji: '🗿', description: 'Продолжение действий несмотря на трудности', color: 'bg-slate-200', gradient: 'from-slate-200 to-gray-200' },
-  { id: 'self-discipline', name: 'Самодисциплина', emoji: '⚔️', description: 'Способность действовать согласно желаниям', color: 'bg-stone-200', gradient: 'from-stone-200 to-gray-200' },
-  { id: 'trust-process', name: 'Доверие', emoji: '🤲', description: 'К другим, к процессу', color: 'bg-teal-200', gradient: 'from-teal-200 to-cyan-200' },
-  { id: 'determination', name: 'Настойчивость', emoji: '🚀', description: 'Умение продолжать движение вперед', color: 'bg-amber-200', gradient: 'from-amber-200 to-orange-200' },
-  { id: 'focus', name: 'Целеустремленность', emoji: '🎪', description: 'Определенность в достижении целей', color: 'bg-emerald-200', gradient: 'from-emerald-200 to-green-200' }
+  { id: 'faith', name: 'Вера', emoji: '🌟', description: 'В себя, в удачу', color: 'bg-orange-200', gradient: 'from-orange-400 to-yellow-400' },
+  { id: 'hope', name: 'Надежда', emoji: '🌅', description: 'Ожидание позитивного результата', color: 'bg-sky-200', gradient: 'from-sky-400 to-blue-400' },
+  { id: 'persistence', name: 'Упорство', emoji: '🗿', description: 'Продолжение действий несмотря на трудности', color: 'bg-slate-200', gradient: 'from-slate-500 to-gray-500' },
+  { id: 'self-discipline', name: 'Самодисциплина', emoji: '⚔️', description: 'Способность действовать согласно желаниям', color: 'bg-stone-200', gradient: 'from-stone-500 to-gray-500' },
+  { id: 'trust-process', name: 'Доверие', emoji: '🤲', description: 'К другим, к процессу', color: 'bg-teal-200', gradient: 'from-teal-400 to-cyan-400' },
+  { id: 'determination', name: 'Настойчивость', emoji: '🚀', description: 'Умение продолжать движение вперед', color: 'bg-amber-200', gradient: 'from-amber-400 to-orange-400' },
+  { id: 'focus', name: 'Целеустремленность', emoji: '🎪', description: 'Определенность в достижении целей', color: 'bg-emerald-200', gradient: 'from-emerald-500 to-green-500' }
 ];
