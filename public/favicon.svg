@@ -1,19 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <defs>
-    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff4757"/>
-      <stop offset="50%" stop-color="#ff3838"/>
-      <stop offset="100%" stop-color="#e55039"/>
-    </linearGradient>
-  </defs>
-  
-  <!-- Heart shape -->
-  <path d="M50,85 C20,60 5,35 5,20 C5,10 12,5 20,5 C30,5 40,10 50,25 C60,10 70,5 80,5 C88,5 95,10 95,20 C95,35 80,60 50,85 Z" 
-        fill="url(#heartGradient)" 
-        stroke="#c0392b" 
-        stroke-width="2"/>
-  
-  <!-- Small highlight -->
-  <ellipse cx="35" cy="25" rx="8" ry="6" fill="#ff6b7a" opacity="0.6"/>
-</svg></content>
-</invoke>
+  <!-- Heart shape максимального размера -->
+  <path d="M50,90 C15,65 2,35 2,18 C2,8 10,2 20,2 C32,2 42,8 50,25 C58,8 68,2 80,2 C90,2 98,8 98,18 C98,35 85,65 50,90 Z" 
+        fill="#dc2626" 
+        stroke="#b91c1c" 
+        stroke-width="1"/>
+</svg>
