@@ -10,5 +10,27 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: Yandex
+Allow: /
+
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://ваш-домен.ru/sitemap.xml
+
+# Запрещаем индексацию служебных файлов
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.ts$
+Disallow: /*.tsx$
+
+# Разрешаем основные разделы
+Allow: /
+Allow: /catalog
+Allow: /about
+Allow: /contact
+
+# Crawl-delay для ботов
+Crawl-delay: 1
